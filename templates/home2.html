@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Predict Patient Cardiovascular Health</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='./style.css') }}">
+</head>
+<body>
+  <!-- <a href="{{ url_for('home') }}">Predict Resale Price</a> -->
+
+  <form action="{{ url_for('home') }}" method="get">
+    <input type="submit" value="Predict Resale Price">
+  </form>
+  
+  <div class="login">
+    <h1>Predict Cardiovascular Health</h1>
+    <form id="predictionForm" action="{{ url_for('predict_health')}}" method="POST">
+        <button type="button" class="btn btn-primary btn-block btn-large" onclick="predictHealth()">Predict</button>
+        <div id="predictionAlert" class="alert" style="display: none;"></div>
+      <label for="Age">Age (years)</label>
+      <input type="number" name="Age" placeholder="Age" required="required" /><br>
+
+      <label for="Gender">Gender</label>
+      <select name="Gender" required="required">
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+      </select><br>
+      
+      <label for="Chest Pain Type">Chest Pain Type</label>
+      <select name="Chest Pain Type" required="required">
+        <option value="TA">Typical Angina</option>
+        <option value="ATA">Atypical Angina</option>
+        <option value="NAP">Non-Anginal Pain</option>
+        <option value="ASY">Asymptomatic</option>
+      </select><br>
+
+      <label for="Resting Blood Pressure (mm Hg)">Resting Blood Pressure (mm Hg)</label>
+      <input type="number" name="Resting Blood Pressure (mm Hg)" placeholder="Resting BP" required="required" /><br>
+
+      <label for="Cholesterol (mg/dL)">Serum Cholesterol (mg/dL)</label>
+      <input type="number" name="Cholesterol (mg/dL)" placeholder="Cholesterol" required="required" /><br>
+
+      <label for="Fasting Blood Sugar (mg/dL)">Fasting Blood Sugar (mg/dL)</label>
+      <input type="number" name="Fasting Blood Sugar (mg/dL)" placeholder="Fasting BS" required="required" /><br>
+
+      <label for="Resting ECG Results">Resting ECG Results</label>
+      <select name="Resting ECG Results" required="required">
+        <option value="Normal">Normal</option>
+        <option value="ST">ST-T Wave Abnormality</option>
+        <option value="LVH">Left Ventricular Hypertrophy</option>
+      </select><br>
+
+      <label for="Maximum Heart Rate (bpm)">Maximum Heart Rate (bpm)</label>
+      <input type="number" name="Maximum Heart Rate (bpm)" placeholder="Max HR" required="required" /><br>
+
+      <label for="Exercise-Induced Angina">Exercise-Induced Angina</label>
+      <select name="Exercise-Induced Angina" required="required">
+        <option value="N">No</option>
+        <option value="Y">Yes</option>
+      </select><br>
+
+    </form>
+  </div>
+
+  <script>
+    function predictHealth() {
+      // Fetch form data and perform prediction (you can use AJAX here)
+      // Replace this with your actual prediction code
+      var predictionResult = "Positive"; // Replace with actual prediction result
+
+      // Display the prediction result as an alert
+      var alertType = "success"; // You can use "danger", "warning", "info", etc.
+      var alertMessage = 'The predicted cardiovascular health status is: <strong>' + predictionResult + '</strong>';
+      var alertHtml = '<div class="alert alert-' + alertType + ' alert-dismissible fade show" role="alert">' +
+                      alertMessage +
+                      '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                      '<span aria-hidden="true">&times;</span>' +
+                      '</button>' +
+                      '</div>';
+      document.getElementById('predictionAlert').innerHTML = alertHtml;
+      document.getElementById('predictionAlert').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
